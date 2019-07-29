@@ -11,7 +11,7 @@
 cc.Class({
     extends: cc.Component,
     editor: {
-        menu: "自定义组件/动画回调",
+        menu: "CustomComponent/AnimationCallBack",
     },
     properties: {
     },

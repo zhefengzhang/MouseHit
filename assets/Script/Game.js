@@ -174,15 +174,15 @@ cc.Class({
     
     initMouseOutEvent () {
         if (this._mouseIndexArr.length === 0) {
-            let mouseAmount = Math.floor((Math.random() * (this.mouseNodes.childrenCount - 1) + 1));
+            let mouseAmount = Math.ceil(Math.random() * (this.mouseNodes.childrenCount - 1));
             
             if (mouseAmount === 0) {
                 mouseAmount = 1;
             }
             
             for (let i = 0; i < 5; i++) {
-                let randomNodeIndex = Math.floor(Math.random() * (this.mouseNodes.childrenCount));
-                let randomSpriteFrameIndex = Math.floor(Math.random() * (this.animalAtlas.getSpriteFrames().length - 1))
+                let randomNodeIndex = Math.ceil(Math.random() * (this.mouseNodes.childrenCount - 1));
+                let randomSpriteFrameIndex = Math.ceil(Math.random() * (this.animalAtlas.getSpriteFrames().length - 1))
                 
                 if (this._mouseIndexArr.indexOf(randomNodeIndex) === -1) {
                     var mouseNode = this.mouseNodes.children[randomNodeIndex].getChildByName("Sp Mouse");
@@ -256,7 +256,7 @@ cc.Class({
     },
 
     onBeCreateHammerEvent (position) {
-        if (!this.hammerNode && !cc.isValid(this.hammerNode)) {
+        if (!cc.isValid(this.hammerNode)) {
             this.hammerNode = cc.instantiate(this.hammer);
             this.hammerNode.zIndex = cc.macro.MAX_ZINDEX;
             this.hammerNode._isCollider = false;
@@ -272,6 +272,7 @@ cc.Class({
             this.node.getComponent("SoundManager").playEffectSound("score");
             this._mouseNode._scoreUpdateFunc();
             this.showScoreEffectByTag(this._mouseNode, this._mouseNode.parent.getChildByName("Nodes Score Effect"));
+            this._score = this._score < 0 ? 0 : this._score; 
             this.gameScore.string = this._score;
             this._mouseNode._isLive = false;
             let oldSpriteFrameName = this._mouseNode.getComponent(cc.Sprite).spriteFrame.name;

@@ -522,7 +522,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 2
+      "z": -2
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -17491,8 +17491,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "返回大厅",
-    "_N$string": "返回大厅",
+    "_string": "Hall",
+    "_N$string": "Hall",
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": false,

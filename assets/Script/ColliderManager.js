@@ -12,7 +12,7 @@ cc.Class({
     extends: cc.Component,
 
     editor: {
-        menu: "自定义组件/碰撞管理",
+        menu: "CustomComponent/CollisionManagement",
     },
 
     properties: {
@@ -25,7 +25,7 @@ cc.Class({
     },
 
     start () {
-        this.gameComponent = cc.director.getScene().getChildByName("Canvas").getComponent("Game");
+        this.gameComponent = cc.find("Canvas").getComponent("Game");
     },
 
     onCollisionEnter (other, self) {
