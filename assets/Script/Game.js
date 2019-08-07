@@ -267,6 +267,7 @@ cc.Class({
 
     onHammerClicked () {
         this.hammerNode.angle = this.hammerNode.angle === 0 ? 30 : 0;
+        this.node.getComponent("SoundManager").playEffectSound("hit");
         if (this._mouseNode && this._mouseNode._isCollider && this._mouseNode._isLive && cc.find("Canvas/Sp Game Bg")) {
             this.node.getComponent("SoundManager").playEffectSound("hit");
             this.node.getComponent("SoundManager").playEffectSound("score");
@@ -279,9 +280,6 @@ cc.Class({
             let newSpriteFrameName = oldSpriteFrameName + "_death";
             this._mouseNode.getComponent(cc.Sprite).spriteFrame = this.animalDeathAtlas.getSpriteFrame(newSpriteFrameName);
             this._mouseNode.getChildByName("Anima Start").getComponent(cc.Animation).play();
-        }
-        else {
-            this.node.getComponent("SoundManager").playEffectSound("hit");
         }
     },
 
