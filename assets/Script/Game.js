@@ -77,7 +77,7 @@ cc.Class({
 
         gameGitHubUrl:"",
 
-        _isCollider: false,
+        // _isCollider: false,
         _mouseNode: null,
         _mouseIndexArr: [],
         _times: 0,
@@ -91,10 +91,10 @@ cc.Class({
     },
 
     initGameData () {
-        for (let i = 0; i < this.mouseNodes.childrenCount; i++) {
-            this.mouseNodes.children[i].getChildByName("Sp Mouse")._isCollider = false;
-            this.mouseNodes.children[i].getChildByName("Sp Mouse")._isLive = false;
-        }
+        // for (let i = 0; i < this.mouseNodes.childrenCount; i++) {
+        //     this.mouseNodes.children[i].getChildByName("Sp Mouse").getComponent("ColliderManager")._isCollider = false;
+        //     this.mouseNodes.children[i].getChildByName("Sp Mouse").getComponent("ColliderManager")._isLive = false;
+        // }
         this._mouseDataTable = [
             {
                 mouseName: "harmful_mouse_0",
@@ -245,9 +245,9 @@ cc.Class({
     },
 
     updateMouseNodeInfo(mouseNode, tag) {
-        mouseNode._isLive = true;
+        mouseNode.getComponent("MouseManager")._isLive = true;
         mouseNode._scoreUpdateFunc = this._mouseDataTable[tag].scoreUpdateFunc.bind(this);
-        mouseNode._tag = tag;
+        mouseNode.getComponent("MouseManager")._tag = tag;
     },
 
     onAnimationFinishEvent () {
@@ -259,7 +259,7 @@ cc.Class({
         if (!cc.isValid(this.hammerNode)) {
             this.hammerNode = cc.instantiate(this.hammer);
             this.hammerNode.zIndex = cc.macro.MAX_ZINDEX;
-            this.hammerNode._isCollider = false;
+            this.hammerNode.getComponent("ColliderManager")._isCollider = false;
             this.node.addChild(this.hammerNode);
         }
         this.hammerNode.position = this.node.convertToNodeSpaceAR(position);
@@ -268,14 +268,14 @@ cc.Class({
     onHammerClicked () {
         this.hammerNode.angle = this.hammerNode.angle === 0 ? 30 : 0;
         this.node.getComponent("SoundManager").playEffectSound("hit");
-        if (this._mouseNode && this._mouseNode._isCollider && this._mouseNode._isLive && cc.find("Canvas/Sp Game Bg")) {
+        if (this._mouseNode && this._mouseNode.getComponent("ColliderManager")._isCollider && this._mouseNode.getComponent("MouseManager")._isLive && cc.find("Canvas/Sp Game Bg")) {
             this.node.getComponent("SoundManager").playEffectSound("hit");
             this.node.getComponent("SoundManager").playEffectSound("score");
             this._mouseNode._scoreUpdateFunc();
             this.showScoreEffectByTag(this._mouseNode, this._mouseNode.parent.getChildByName("Nodes Score Effect"));
             this._score = this._score < 0 ? 0 : this._score; 
             this.gameScore.string = this._score;
-            this._mouseNode._isLive = false;
+            this._mouseNode.getComponent("MouseManager")._isLive = false;
             let oldSpriteFrameName = this._mouseNode.getComponent(cc.Sprite).spriteFrame.name;
             let newSpriteFrameName = oldSpriteFrameName + "_death";
             this._mouseNode.getComponent(cc.Sprite).spriteFrame = this.animalDeathAtlas.getSpriteFrame(newSpriteFrameName);
@@ -285,7 +285,7 @@ cc.Class({
 
     showScoreEffectByTag (node, scoreEffectNode) {
         for (let i = 0; i < scoreEffectNode.childrenCount; i++) {
-            scoreEffectNode.children[i].opacity = node._tag === i ? 255 : 0;
+            scoreEffectNode.children[i].opacity = node.getComponent("MouseManager")._tag === i ? 255 : 0;
             scoreEffectNode.children[i].runAction(cc.fadeOut(1));
         }
     },

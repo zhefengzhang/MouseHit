@@ -16,6 +16,7 @@ cc.Class({
     },
 
     properties: {
+        _isCollider: false
     },
 
     onLoad () {
@@ -30,7 +31,8 @@ cc.Class({
 
     onCollisionEnter (other, self) {
         if (this.node.group === cc.game.groupList[1]) {
-            this.node._isCollider = true;
+            console.log("cocos");
+            this._isCollider = true;
             this.gameComponent._mouseNode = this.node;
         }
         else if (this.node.group === cc.game.groupList[2]) {
@@ -40,7 +42,7 @@ cc.Class({
 
     onCollisionExit (other, self) {
         if (this.node.group === cc.game.groupList[1]) {
-            this.node._isCollider = false;
+            this._isCollider = false;
         }
         else if (this.node.group === cc.game.groupList[2]) {
 
