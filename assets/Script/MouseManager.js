@@ -12,17 +12,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        _isLive: false,
-        _tag: null,
+        _isLive: false,  //代表老鼠是否被击晕
+        _tag: null,  //节点标签
     },
-
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
-    start () {
-
-    },
-
-    // update (dt) {},
 });
