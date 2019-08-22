@@ -77,6 +77,7 @@ cc.Class({
 
         gameGitHubUrl:"",
 
+        // _isCollider: false,
         _mouseNode: null,
         _mouseIndexArr: [],
         _times: 0,
@@ -90,6 +91,10 @@ cc.Class({
     },
 
     initGameData () {
+        // for (let i = 0; i < this.mouseNodes.childrenCount; i++) {
+        //     this.mouseNodes.children[i].getChildByName("Sp Mouse").getComponent("ColliderManager")._isCollider = false;
+        //     this.mouseNodes.children[i].getChildByName("Sp Mouse").getComponent("ColliderManager")._isLive = false;
+        // }
         this._mouseDataTable = [
             {
                 mouseName: "harmful_mouse_0",
