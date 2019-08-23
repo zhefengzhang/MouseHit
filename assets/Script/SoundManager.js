@@ -40,14 +40,14 @@ cc.Class({
         _EffectId: null,
     },
 
-    playBackGroupSound () {
+    playBackGroundSound () {
         cc.audioEngine.stopAll();
         this._audioId = cc.audioEngine.play(this.backGroupSound, this.loop, this.soundVolume);
     },
 
     playEffectSound (command, loop) {
         if (loop === null && loop === undefined) {
-            var loop = loop;
+            var loop = this.loop;
         }
         if (command !== null || command !== undefined) {
             switch (command) {

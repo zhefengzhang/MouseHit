@@ -286,7 +286,7 @@ cc.Class({
     },
 
     onGamePlayButtonClicked() {
-        this.node.getComponent("SoundManager").playBackGroupSound();
+        this.node.getComponent("SoundManager").playBackGroundSound();
         cc.find("Canvas/Sp Hall Bg").active = false;
         cc.find("Canvas/Sp Game Bg").active = true;
         this.startTimeRoller();
@@ -322,7 +322,7 @@ cc.Class({
         }
         else {
             event.target.getComponent(cc.Sprite).spriteFrame = this.icon.getSpriteFrame("sound_open");
-            this.node.getComponent("SoundManager").playBackGroupSound();
+            this.node.getComponent("SoundManager").playBackGroundSound();
         }
     },
     
